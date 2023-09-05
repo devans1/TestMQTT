@@ -1,6 +1,6 @@
 //
 //  ServerView.swift
-//  EmCuTeeTee
+//  TestMQTT
 //
 //  Created by Adam Fowler on 27/06/2021.
 //
@@ -46,12 +46,13 @@ struct ServerView: View {
                 List {
                     ForEach(messages) {
                         Text($0.text)
-                            .padding()
+//                            .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .overlay (
-                                RoundedRectangle(cornerRadius: 16.0)
-                                    .stroke(Color.secondary, lineWidth: 2)
-                            )
+//                            .overlay (
+//                                RoundedRectangle(cornerRadius: 16.0)
+//                                    .stroke(Color.secondary, lineWidth: 2)
+//                            )
+                            .font(.caption)
                     }
                 }
                 .onChange(of: messages) { target in
@@ -189,7 +190,7 @@ class MQTTClientConnection {
             useWebSockets: details.useWebSocket,
             webSocketURLPath: details.webSocketUrl
         )
-        var logger = Logger(label: "EmCuteetee")
+        var logger = Logger(label: "TestMQTT")
         #if DEBUG
         logger.logLevel = .trace
         #else
@@ -228,7 +229,7 @@ class MQTTClientConnection {
     func connect() async {
         do {
             _ = try await self.client.connect(cleanSession: view.serverDetails.cleanSession)
-            self.client.addCloseListener(named: "EmCuTeeTee") { result in
+            self.client.addCloseListener(named: "TestMQTT") { result in
                 guard !self.shuttingDown else { return }
                 Task {
                     await self.view.addMessage("Connection closed", now: true)

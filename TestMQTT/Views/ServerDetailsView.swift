@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  EmCuTeeTee
+//  TestMQTT
 //
 //  Created by Adam Fowler on 27/06/2021.
 //
@@ -121,7 +121,7 @@ struct ServerDetailsView: View {
                     .disabled(settings.hostname.count == 0)
                 }
             }
-            .navigationBarTitle(Text("MQTT server details"))
+            .navigationBarTitle(Text("MQTT Server Details"))
         }
     }
 
